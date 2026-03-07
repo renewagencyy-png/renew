@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Renew — Diseño web premium e integración de chatbots</title>
+  <meta name="description" content="Renew crea páginas web premium para negocios que quieren una presencia digital elegante, profesional y preparada para captar clientes. También integra chatbots a medida." />
+  <meta name="theme-color" content="#111111" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f0f10;
+      --bg-soft:#171719;
+      --panel:#1d1d20;
+      --panel-2:#232327;
+      --line:rgba(255,255,255,.08);
+      --text:#f5f1ea;
+      --muted:#b7afa3;
+      --muted-2:#8f887e;
+      --accent:#d6c3a1;
+      --accent-2:#f0e2c8;
+      --white:#ffffff;
+      --shadow:0 30px 80px rgba(0,0,0,.28);
+      --radius:24px;
+      --radius-sm:16px;
+      --container:1200px;
+      --serif: "Playfair Display", serif;
+      --sans: "Manrope", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(214,195,161,.12), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,.05), transparent 20%),
+        linear-gradient(180deg, #0e0e10 0%, #121214 35%, #0e0e10 100%);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--container), calc(100% - 40px));margin:0 auto}
+    .section{padding:110px 0;position:relative}
+    .section-tight{padding:80px 0}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-size:.75rem;
+      color:var(--accent);
+      margin-bottom:18px;
+    }
+    .eyebrow::before{
+      content:"";
+      width:28px;height:1px;
+      background:linear-gradient(90deg,var(--accent),transparent);
+      display:block;
+    }
+
+    h1,h2,h3,p{margin:0}
+    h1{
+      font-family:var(--serif);
+      font-weight:600;
+      font-size:clamp(2.3rem, 4.2vw, 4.4rem);
+      line-height:1.02;
+      letter-spacing:-.035em;
+      max-width:11ch;
+    }
+    h2{
+      font-family:var(--serif);
+      font-weight:500;
+      font-size:clamp(2rem, 4vw, 4rem);
+      line-height:1.02;
+      letter-spacing:-.03em;
+      max-width:12ch;
+    }
+    h3{
+      font-size:1.1rem;
+      font-weight:600;
+      letter-spacing:-.01em;
+    }
+    .lead{
+      font-size:clamp(1.05rem, 1.6vw, 1.25rem);
+      color:var(--muted);
+      max-width:700px;
+    }
+    .muted{color:var(--muted)}
+    .small{font-size:.95rem;color:var(--muted-2)}
+
+    .btn-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:26px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.7rem;
+      padding:15px 22px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:.95rem;
+      transition:.35s ease;
+      border:1px solid transparent;
+      cursor:pointer;
+    }
+    .btn-primary{
+      background:linear-gradient(180deg, var(--accent-2), var(--accent));
+      color:#111;
+      box-shadow:0 12px 32px rgba(214,195,161,.22);
+    }
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 40px rgba(214,195,161,.28);
+    }
+    .btn-secondary{
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      backdrop-filter:blur(12px);
+    }
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.22);
+      background:rgba(255,255,255,.05);
+    }
+
+    .site-header{
+      position:fixed;
+      top:0;left:0;right:0;
+      z-index:50;
+      transition:.35s ease;
+      background:transparent;
+    }
+    .site-header.scrolled{
+      background:rgba(14,14,16,.72);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:82px;
+    }
+    .brand{
+      font-size:1.1rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .brand span{color:var(--accent)}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+    }
+    .nav-links a{
+      color:var(--muted);
+      font-size:.96rem;
+      transition:.25s ease;
+    }
+    .nav-links a:hover{color:var(--white)}
+    .nav-cta{display:flex;align-items:center;gap:14px}
+    .menu-toggle{
+      display:none;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      width:46px;height:46px;border-radius:50%;
+      font-size:1.1rem;
+    }
+
+    .hero{
+      min-height:92vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      padding-top:96px;
+      isolation:isolate;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        linear-gradient(180deg, rgba(8,8,10,.28) 0%, rgba(8,8,10,.52) 44%, rgba(8,8,10,.86) 100%),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      transform:scale(1.02);
+      z-index:-3;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        radial-gradient(circle at 75% 28%, rgba(214,195,161,.12), transparent 22%),
+        linear-gradient(90deg, rgba(15,15,16,.92) 0%, rgba(15,15,16,.62) 42%, rgba(15,15,16,.68) 100%);
+      z-index:-2;
+    }
+    .hero-noise{
+      position:absolute;inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+      background-size:96px 96px;
+      mask-image:linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,1));
+      opacity:.08;
+      z-index:-1;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:72px;
+      align-items:center;
+      width:100%;
+      padding:18px 0;
+    }
+    .hero-copy{
+      max-width:520px;
+    }
+    .hero-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:.65rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:.7rem;
+      color:var(--accent);
+      margin-bottom:16px;
+    }
+    .hero-kicker::before{
+      content:"";
+      width:26px;
+      height:1px;
+      background:linear-gradient(90deg,var(--accent),transparent);
+      display:block;
+    }
+    .hero-copy .lead{
+      margin-top:16px;
+      max-width:420px;
+      font-size:.97rem;
+      line-height:1.75;
+      color:#d2cabd;
+    }
+    .hero-points{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:20px;
+    }
+    .hero-points span{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.035);
+      border:1px solid rgba(255,255,255,.07);
+      color:#d8cfbf;
+      font-size:.82rem;
+      backdrop-filter:blur(10px);
+    }
+    .hero-signature{
+      display:none;
+    }
+    .hero-panel{
+      justify-self:end;
+      width:min(100%, 455px);
+      background:rgba(14,14,16,.66);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:30px;
+      padding:22px;
+      backdrop-filter:blur(18px);
+      box-shadow:var(--shadow);
+    }
+    .panel-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:20px;
+    }
+    .dots{display:flex;gap:7px}
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:rgba(255,255,255,.18);
+    }
+    .badge{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(214,195,161,.12);
+      color:var(--accent-2);
+      font-size:.76rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .browser{
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:22px;
+      overflow:hidden;
+      background:#121214;
+    }
+    .browser-bar{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 16px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      color:var(--muted-2);
+      font-size:.82rem;
+    }
+    .browser-bar .mini{display:flex;gap:6px}
+    .browser-bar .mini span{
+      width:8px;height:8px;border-radius:50%;
+      background:rgba(255,255,255,.15);
+      display:block;
+    }
+    .browser-view{padding:18px}
+    .browser-hero{
+      min-height:130px;
+      border-radius:18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)),
+        radial-gradient(circle at 20% 20%, rgba(214,195,161,.28), transparent 40%),
+        linear-gradient(135deg, #2a2927, #171718);
+      display:flex;
+      align-items:flex-end;
+      padding:18px;
+      color:var(--white);
+      font-family:var(--serif);
+      font-size:1.35rem;
+      line-height:1.05;
+      letter-spacing:-.03em;
+    }
+    .browser-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    .browser-block{
+      background:var(--panel);
+      border-radius:16px;
+      min-height:96px;
+      border:1px solid rgba(255,255,255,.04);
+      padding:14px;
+    }
+    .browser-line{
+      height:10px;
+      border-radius:999px;
+      background:linear-gradient(90deg, rgba(255,255,255,.16), rgba(255,255,255,.05));
+      margin-bottom:10px;
+    }
+    .browser-line.short{width:62%}
+    .chat-preview{
+      margin-top:14px;
+      display:flex;
+      justify-content:flex-end;
+    }
+    .chat-bubble{
+      width:78%;
+      padding:14px 14px 12px;
+      border-radius:18px 18px 6px 18px;
+      background:linear-gradient(180deg, rgba(214,195,161,.18), rgba(214,195,161,.08));
+      border:1px solid rgba(214,195,161,.18);
+      color:var(--accent-2);
+      font-size:.92rem;
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      align-items:end;
+      margin-bottom:48px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:20px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:auto auto 0 0;
+      width:120px;height:120px;
+      background:radial-gradient(circle, rgba(214,195,161,.12), transparent 70%);
+      pointer-events:none;
+    }
+    .card-icon{
+      width:48px;height:48px;
+      border-radius:16px;
+      background:rgba(214,195,161,.1);
+      border:1px solid rgba(214,195,161,.14);
+      display:grid;
+      place-items:center;
+      color:var(--accent-2);
+      margin-bottom:18px;
+      font-size:1.1rem;
+    }
+    .card p{margin-top:12px;color:var(--muted)}
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      align-items:center;
+    }
+    .visual-box{
+      min-height:560px;
+      border-radius:32px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015)),
+        radial-gradient(circle at 25% 15%, rgba(214,195,161,.22), transparent 26%),
+        linear-gradient(135deg, #23211f, #121214 60%);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:var(--shadow);
+      padding:28px;
+      position:relative;
+      overflow:hidden;
+    }
+    .visual-stack{
+      position:absolute;
+      inset:auto 28px 28px 28px;
+      display:grid;
+      gap:16px;
+    }
+    .screen{
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:24px;
+      background:rgba(17,17,19,.88);
+      backdrop-filter:blur(10px);
+      padding:18px;
+      box-shadow:0 24px 60px rgba(0,0,0,.3);
+    }
+    .screen-large{
+      min-height:240px;
+      transform:rotate(-3deg);
+    }
+    .screen-small{
+      width:72%;
+      margin-left:auto;
+      min-height:170px;
+      transform:rotate(4deg);
+      border-color:rgba(214,195,161,.18);
+    }
+    .chip-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+    .chip{
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    .list{
+      display:grid;
+      gap:16px;
+      margin-top:26px;
+    }
+    .list-item{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:14px;
+      align-items:start;
+    }
+    .list-dot{
+      width:28px;height:28px;border-radius:50%;
+      background:rgba(214,195,161,.12);
+      border:1px solid rgba(214,195,161,.16);
+      display:grid;place-items:center;
+      color:var(--accent);
+      font-size:.9rem;
+      margin-top:2px;
+    }
+    .list-item p{color:var(--muted);margin-top:6px}
+
+    .process{
+      counter-reset:step;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+    .process-card{
+      padding:26px;
+      border-radius:26px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      position:relative;
+      overflow:hidden;
+    }
+    .process-card::before{
+      counter-increment:step;
+      content:"0" counter(step);
+      display:block;
+      font-family:var(--serif);
+      font-size:2.3rem;
+      color:rgba(214,195,161,.65);
+      margin-bottom:18px;
+      line-height:1;
+    }
+    .process-card p{margin-top:12px;color:var(--muted)}
+
+    .project{
+      min-height:420px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      border-radius:32px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      position:relative;
+      padding:30px;
+      box-shadow:var(--shadow);
+    }
+    .project::before{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.78)),
+        var(--bg-image) center/cover no-repeat;
+      transition:transform .8s ease;
+      z-index:-1;
+    }
+    .project:hover::before{transform:scale(1.05)}
+    .project .tag{
+      display:inline-flex;
+      width:max-content;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.1);
+      font-size:.8rem;
+      color:var(--accent-2);
+      margin-bottom:16px;
+    }
+    .project p{margin-top:10px;max-width:520px;color:#ddd4c6}
+
+    .quote{
+      padding:34px;
+      border-radius:28px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      box-shadow:var(--shadow);
+    }
+    .quote-mark{
+      font-family:var(--serif);
+      font-size:3rem;
+      color:rgba(214,195,161,.65);
+      line-height:1;
+      margin-bottom:14px;
+    }
+    .quote p{
+      font-size:1.08rem;
+      color:var(--text);
+      line-height:1.75;
+    }
+    .quote footer{
+      margin-top:20px;
+      color:var(--muted);
+      font-size:.95rem;
+    }
+
+    .faq{
+      display:grid;
+      gap:14px;
+    }
+    details{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      overflow:hidden;
+    }
+    summary{
+      list-style:none;
+      cursor:pointer;
+      padding:22px 24px;
+      font-weight:600;
+      position:relative;
+    }
+    summary::-webkit-details-marker{display:none}
+    summary::after{
+      content:"+";
+      position:absolute;
+      right:24px;top:50%;
+      transform:translateY(-50%);
+      color:var(--accent);
+      font-size:1.35rem;
+      transition:.25s ease;
+    }
+    details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+    .faq-content{
+      padding:0 24px 22px;
+      color:var(--muted);
+      max-width:85ch;
+    }
+
+    .cta-block{
+      padding:44px;
+      border-radius:34px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(214,195,161,.16), transparent 20%),
+        linear-gradient(135deg, #1e1d1b, #121214 65%);
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+      align-items:start;
+    }
+    .contact-list{
+      display:grid;
+      gap:16px;
+    }
+    .contact-item{
+      padding:18px 20px;
+      border-radius:22px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .contact-item span{
+      display:block;
+      font-size:.82rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted-2);
+      margin-bottom:7px;
+    }
+
+    .contact-form{
+      display:grid;
+      gap:16px;
+    }
+    .form-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .field{
+      display:grid;
+      gap:8px;
+    }
+    .field label{
+      font-size:.84rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted-2);
+    }
+    .field input,
+    .field textarea{
+      width:100%;
+      border:none;
+      outline:none;
+      padding:16px 18px;
+      border-radius:18px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--text);
+      font-family:var(--sans);
+      font-size:.98rem;
+      transition:.25s ease;
+    }
+    .field input:focus,
+    .field textarea:focus{
+      border-color:rgba(214,195,161,.45);
+      box-shadow:0 0 0 4px rgba(214,195,161,.08);
+    }
+    .field textarea{
+      min-height:160px;
+      resize:vertical;
+    }
+    .form-note{
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .footer{
+      padding:30px 0 46px;
+      color:var(--muted-2);
+      border-top:1px solid rgba(255,255,255,.05);
+    }
+    .footer-row{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width: 1100px){
+      .hero-grid,
+      .section-head,
+      .split,
+      .cta-block{
+        grid-template-columns:1fr;
+      }
+      .hero-panel{
+        justify-self:start;
+        width:min(100%, 520px);
+      }
+      .process{grid-template-columns:repeat(2,1fr)}
+      .grid-3{grid-template-columns:1fr 1fr}
+      h2{max-width:none}
+    }
+
+    @media (max-width: 780px){
+      .nav-links,
+      .nav-cta .btn{
+        display:none;
+      }
+      .menu-toggle{display:grid;place-items:center}
+      .mobile-menu{
+        position:fixed;
+        top:82px;left:20px;right:20px;
+        background:rgba(18,18,20,.96);
+        border:1px solid rgba(255,255,255,.08);
+        border-radius:24px;
+        padding:18px;
+        box-shadow:var(--shadow);
+        display:none;
+        z-index:60;
+      }
+      .mobile-menu.active{display:grid;gap:8px}
+      .mobile-menu a{
+        padding:14px 12px;
+        color:var(--muted);
+        border-radius:14px;
+      }
+      .mobile-menu a:hover{background:rgba(255,255,255,.04);color:var(--white)}
+      .grid-3,.grid-2,.process,.form-row{grid-template-columns:1fr}
+      .section{padding:88px 0}
+      .hero{
+        min-height:auto;
+        padding-top:110px;
+        padding-bottom:34px;
+      }
+      .hero-grid{
+        padding:8px 0 20px;
+        gap:24px;
+      }
+      .hero-panel{
+        width:100%;
+      }
+      .visual-box{min-height:460px}
+      .cta-block{padding:28px}
+      h1{
+        max-width:none;
+        font-size:clamp(2rem, 9vw, 3.2rem);
+        line-height:1.04;
+      }
+      .hero-copy .lead{
+        font-size:.94rem;
+        max-width:none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav">
+      <a href="#top" class="brand">Re<span>new</span></a>
+
+      <nav class="nav-links" aria-label="Principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#chatbots">Chatbots</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="#contacto" class="btn btn-secondary">Contactar</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#servicios">Servicios</a>
+        <a href="#chatbots">Chatbots</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-noise"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="hero-kicker">Renew Studio</div>
+
+          <h1>Webs premium para negocios que quieren verse mejor</h1>
+
+          <p class="lead">
+            Diseño web corporativo limpio, actual y profesional. Integramos chatbots solo cuando mejoran realmente la experiencia y la captación.
+          </p>
+
+          <div class="hero-points">
+            <span>Diseño web</span>
+            <span>Rediseño premium</span>
+            <span>Chatbots integrados</span>
+          </div>
+
+          <div class="btn-row">
+            <a href="#contacto" class="btn btn-primary">Solicitar propuesta</a>
+            <a href="#proceso" class="btn btn-secondary">Ver proceso</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel reveal">
+          <div class="panel-top">
+            <div class="dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="badge">Vista premium</div>
+          </div>
+
+          <div class="browser">
+            <div class="browser-bar">
+              <div class="mini">
+                <span></span><span></span><span></span>
+              </div>
+              renew.agency
+            </div>
+            <div class="browser-view">
+              <div class="browser-hero">Diseño web que transmite confianza</div>
+              <div class="browser-grid">
+                <div class="browser-block">
+                  <div class="browser-line"></div>
+                  <div class="browser-line short"></div>
+                  <div class="chip-row">
+                    <span class="chip">Web corporativa</span>
+                    <span class="chip">Imagen premium</span>
+                  </div>
+                </div>
+                <div class="browser-block">
+                  <div class="browser-line"></div>
+                  <div class="browser-line short"></div>
+                  <div class="chat-preview">
+                    <div class="chat-bubble">Chatbot integrado con una experiencia cuidada.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Propuesta de valor</div>
+            <h2>Una web bien diseñada cambia cómo perciben tu negocio</h2>
+          </div>
+          <p class="lead">
+            No se trata solo de tener presencia online. Se trata de tener una web que represente bien tu marca, ordene tu mensaje y ayude a captar clientes con una imagen más sólida y profesional.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <div class="card-icon">01</div>
+            <h3>Claridad desde el primer vistazo</h3>
+            <p>Arquitectura simple, jerarquía visual precisa y mensajes directos para que el usuario entienda qué haces y por qué debería elegirte.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">02</div>
+            <h3>Percepción premium real</h3>
+            <p>Paleta refinada, tipografía elegante, espaciado amplio y una ejecución limpia que evita el aspecto de plantilla genérica.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">03</div>
+            <h3>Tecnología con criterio</h3>
+            <p>Los chatbots se integran como un plus estratégico para mejorar la atención y la captación, nunca como un elemento invasivo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicios">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Servicios</div>
+            <h2>Diseño web corporativo con una ejecución cuidada</h2>
+          </div>
+          <p class="lead">
+            El foco principal está en crear páginas web que eleven la imagen de tu negocio. Los chatbots se presentan como una capa adicional de valor, no como el centro de la propuesta.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card reveal">
+            <div class="card-icon">✦</div>
+            <h3>Diseño y desarrollo web</h3>
+            <p>Webs corporativas modernas, limpias y profesionales, diseñadas para transmitir confianza y convertir mejor en desktop y móvil.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">✦</div>
+            <h3>Rediseño de webs existentes</h3>
+            <p>Transformamos sitios desactualizados en experiencias mucho más elegantes, claras y alineadas con el nivel real de tu empresa.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">✦</div>
+            <h3>Optimización de imagen digital</h3>
+            <p>Mejoramos la manera en la que tu negocio se presenta online, reforzando posicionamiento, credibilidad y consistencia visual.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">✦</div>
+            <h3>Integración de chatbots</h3>
+            <p>Implementamos asistentes conversacionales integrados en la web para resolver dudas, filtrar leads y mejorar la experiencia de usuario.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="chatbots">
+      <div class="container split">
+        <div class="reveal">
+          <div class="eyebrow">Chatbots como valor añadido</div>
+          <h2>Integrados con elegancia, no añadidos de forma forzada</h2>
+          <p class="lead" style="margin-top:22px;">
+            El chatbot debe sentirse parte natural de la experiencia. Por eso se integra dentro del diseño general de la web, con una presencia discreta, coherente y útil para el negocio.
+          </p>
+
+          <div class="list">
+            <div class="list-item">
+              <div class="list-dot">•</div>
+              <div>
+                <h3>Atención inmediata</h3>
+                <p>Respuesta rápida a preguntas frecuentes para no perder oportunidades por falta de atención.</p>
+              </div>
+            </div>
+
+            <div class="list-item">
+              <div class="list-dot">•</div>
+              <div>
+                <h3>Mejor captación</h3>
+                <p>Recoge información inicial, filtra contactos y facilita el primer paso del cliente potencial.</p>
+              </div>
+            </div>
+
+            <div class="list-item">
+              <div class="list-dot">•</div>
+              <div>
+                <h3>Experiencia más fluida</h3>
+                <p>Ayuda sin saturar la interfaz, manteniendo la estética premium y la sensación de orden.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-box reveal" aria-hidden="true">
+          <div class="visual-stack">
+            <div class="screen screen-large">
+              <div class="browser-bar" style="padding:0 0 14px 0;border-bottom:none;">
+                <div class="mini"><span></span><span></span><span></span></div>
+                interfaz de cliente
+              </div>
+              <div class="browser-hero" style="min-height:145px;">Una presencia digital más seria, clara y convincente</div>
+              <div class="chip-row">
+                <span class="chip">Diseño premium</span>
+                <span class="chip">Copy claro</span>
+                <span class="chip">Conversión elegante</span>
+              </div>
+            </div>
+
+            <div class="screen screen-small">
+              <div class="badge" style="width:max-content;margin-bottom:14px;">Chatbot</div>
+              <div class="browser-line"></div>
+              <div class="browser-line short"></div>
+              <div class="chat-preview" style="justify-content:flex-start;margin-top:22px;">
+                <div class="chat-bubble" style="width:100%;border-radius:18px 18px 18px 6px;">
+                  Hola. Puedo ayudarte a resolver dudas sobre servicios, tiempos y propuesta.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="beneficios">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Por qué Renew</div>
+            <h2>Menos ruido, más criterio visual y más confianza</h2>
+          </div>
+          <p class="lead">
+            La diferencia entre una web correcta y una web realmente premium está en la contención, en la consistencia y en la calidad de cada decisión visual.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <div class="card-icon">A</div>
+            <h3>Jerarquía impecable</h3>
+            <p>El contenido se presenta con orden, respiración y equilibrio, para que cada sección tenga una función clara dentro de la experiencia.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">B</div>
+            <h3>Estética refinada</h3>
+            <p>Una dirección visual sobria, actual y bien ejecutada genera una percepción inmediata de profesionalidad y nivel.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">C</div>
+            <h3>Conversión sin agresividad</h3>
+            <p>La web está orientada a captar clientes, pero desde un lenguaje elegante y una navegación que inspira confianza.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proceso">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Proceso de trabajo</div>
+            <h2>Un método claro para construir una web sólida</h2>
+          </div>
+          <p class="lead">
+            Cada proyecto sigue una secuencia ordenada para conseguir una presencia digital más coherente, más elegante y mejor preparada para captar clientes.
+          </p>
+        </div>
+
+        <div class="process">
+          <article class="process-card reveal">
+            <h3>Análisis</h3>
+            <p>Entendemos tu negocio, tu posicionamiento y la percepción que quieres proyectar.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <h3>Estructura</h3>
+            <p>Definimos la arquitectura, el recorrido del usuario y los mensajes principales.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <h3>Diseño</h3>
+            <p>Construimos una propuesta visual premium con especial cuidado por detalle, legibilidad y coherencia.</p>
+          </article>
+
+          <article class="process-card reveal">
+            <h3>Integración</h3>
+            <p>Dejamos la web preparada para captar mejor y añadimos chatbot cuando aporta valor real.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proyectos">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Ejemplos de enfoque</div>
+            <h2>Una línea visual pensada para negocios que quieren destacar con elegancia</h2>
+          </div>
+          <p class="lead">
+            La idea no es recargar, sino mostrar una marca más madura, más seria y mejor presentada en cada punto de contacto.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="project reveal" style="--bg-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80');">
+            <span class="tag">Web corporativa</span>
+            <h3 style="font-size:1.6rem;">Presencia digital más sólida</h3>
+            <p>Diseño sobrio, composición limpia y mensajes directos para transmitir confianza desde la primera impresión.</p>
+          </article>
+
+          <article class="project reveal" style="--bg-image:url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1600&q=80');">
+            <span class="tag">Chatbot integrado</span>
+            <h3 style="font-size:1.6rem;">Atención útil sin romper el diseño</h3>
+            <p>La tecnología se incorpora con discreción, reforzando la experiencia en lugar de invadirla.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container">
+        <div class="grid-2">
+          <article class="quote reveal">
+            <div class="quote-mark">“</div>
+            <p>
+              Ahora la web transmite exactamente el nivel de profesionalidad que queríamos proyectar. La diferencia en imagen y claridad es evidente.
+            </p>
+            <footer>Cliente · Rediseño corporativo</footer>
+          </article>
+
+          <article class="quote reveal">
+            <div class="quote-mark">“</div>
+            <p>
+              El chatbot quedó integrado de forma natural y la experiencia general se siente mucho más premium, más limpia y más convincente.
+            </p>
+            <footer>Cliente · Web + integración conversacional</footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">FAQ</div>
+            <h2>Preguntas frecuentes</h2>
+          </div>
+          <p class="lead">
+            Respuestas rápidas para resolver las dudas más habituales antes de dar el siguiente paso.
+          </p>
+        </div>
+
+        <div class="faq">
+          <details class="reveal">
+            <summary>¿El enfoque principal es diseño web o chatbots?</summary>
+            <div class="faq-content">
+              El servicio principal es la creación y rediseño de páginas web corporativas premium. La integración de chatbots se plantea como un complemento estratégico.
+            </div>
+          </details>
+
+          <details class="reveal">
+            <summary>¿Incluyes ecommerce o tienda online?</summary>
+            <div class="faq-content">
+              No. El enfoque está puesto en webs corporativas y comerciales orientadas a captar clientes, no en tiendas online ni pasarelas de pago.
+            </div>
+          </details>
+
+          <details class="reveal">
+            <summary>¿Se puede rediseñar una web existente?</summary>
+            <div class="faq-content">
+              Sí. Podemos partir de una web actual y transformarla en una versión mucho más limpia, moderna y alineada con una percepción premium.
+            </div>
+          </details>
+
+          <details class="reveal">
+            <summary>¿El chatbot es obligatorio?</summary>
+            <div class="faq-content">
+              No. Solo se integra cuando tiene sentido para el negocio y cuando mejora realmente la atención, la captación o la experiencia de usuario.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="container">
+        <div class="cta-block reveal">
+          <div>
+            <div class="eyebrow">Contacto</div>
+            <h2>Cuéntame tu proyecto</h2>
+            <p class="lead" style="margin-top:22px;">
+              Rellena el formulario y recibiré tu solicitud para valorar la mejor propuesta para tu web.
+            </p>
+
+            <div class="contact-list" style="margin-top:28px;">
+              <div class="contact-item">
+                <span>Email</span>
+                <strong>renew.agencyy@gmail.com</strong>
+              </div>
+              <div class="contact-item">
+                <span>Teléfono</span>
+                <strong>621 283 706</strong>
+              </div>
+              <div class="contact-item">
+                <span>Servicios</span>
+                <strong>Diseño web · Rediseño web · Chatbots integrados</strong>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form" action="https://formsubmit.co/renew.agencyy@gmail.com" method="POST">
+            <div class="form-row">
+              <div class="field">
+                <label for="nombre">Nombre</label>
+                <input id="nombre" name="nombre" type="text" required placeholder="Tu nombre" />
+              </div>
+              <div class="field">
+                <label for="empresa">Empresa</label>
+                <input id="empresa" name="empresa" type="text" placeholder="Nombre de tu empresa" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required placeholder="tu@email.com" />
+              </div>
+              <div class="field">
+                <label for="telefono">Teléfono</label>
+                <input id="telefono" name="telefono" type="tel" placeholder="Tu teléfono" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="servicio">Servicio que te interesa</label>
+              <input id="servicio" name="servicio" type="text" placeholder="Diseño web, rediseño o chatbot" />
+            </div>
+
+            <div class="field">
+              <label for="mensaje">Cuéntame qué necesitas</label>
+              <textarea id="mensaje" name="mensaje" required placeholder="Describe brevemente tu proyecto, objetivos o el tipo de web que estás buscando"></textarea>
+            </div>
+
+            <input type="hidden" name="_subject" value="Nuevo contacto desde Renew">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+
+            <button type="submit" class="btn btn-primary" style="width:max-content;">Enviar solicitud</button>
+
+            <p class="form-note">
+              La primera vez tendrás que confirmar por email la activación del formulario en FormSubmit.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>© 2026 Renew. Diseño web premium para negocios.</div>
+      <div>Web corporativa · Minimalista · Profesional</div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    window.addEventListener('scroll', () => {
+      if(window.scrollY > 18){
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    if(menuToggle){
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+      });
+    }
+
+    document.querySelectorAll('.mobile-menu a, .nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
