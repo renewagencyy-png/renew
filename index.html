@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Renew — Diseño y desarrollo web premium</title>
+  <meta name="description" content="Renew diseña páginas web premium, landings, webs corporativas, rediseños y tiendas online cuidadas para marcas que quieren vender mejor y proyectarse con más nivel." />
+  <meta name="theme-color" content="#111111" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f0f10;
+      --bg-soft:#171719;
+      --panel:#1d1d20;
+      --panel-2:#232327;
+      --line:rgba(255,255,255,.08);
+      --text:#f5f1ea;
+      --muted:#b7afa3;
+      --muted-2:#8f887e;
+      --accent:#d6c3a1;
+      --accent-2:#f0e2c8;
+      --white:#ffffff;
+      --shadow:0 30px 80px rgba(0,0,0,.28);
+      --radius:24px;
+      --radius-sm:16px;
+      --container:1200px;
+      --serif:"Playfair Display", serif;
+      --sans:"Manrope", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(214,195,161,.12), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,.05), transparent 20%),
+        linear-gradient(180deg, #0e0e10 0%, #121214 35%, #0e0e10 100%);
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+      font-size:15.5px;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(var(--container), calc(100% - 40px));margin:0 auto}
+    .section{padding:96px 0;position:relative}
+    .section-tight{padding:72px 0}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:.6rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-size:.72rem;
+      color:var(--accent);
+      margin-bottom:16px;
+    }
+    .eyebrow::before{
+      content:"";
+      width:28px;height:1px;
+      background:linear-gradient(90deg,var(--accent),transparent);
+      display:block;
+    }
+
+    h1,h2,h3,p{margin:0}
+    h1{
+      font-family:var(--serif);
+      font-weight:600;
+      font-size:clamp(2rem, 3.3vw, 3.35rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
+      max-width:14ch;
+    }
+    h2{
+      font-family:var(--serif);
+      font-weight:500;
+      font-size:clamp(1.8rem, 3vw, 3.2rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
+      max-width:16ch;
+    }
+    h3{
+      font-size:1rem;
+      font-weight:600;
+      letter-spacing:-.01em;
+    }
+    .lead{
+      font-size:clamp(.96rem, 1.15vw, 1.06rem);
+      color:var(--muted);
+      max-width:680px;
+    }
+    .muted{color:var(--muted)}
+    .small{font-size:.92rem;color:var(--muted-2)}
+
+    .btn-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:30px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.7rem;
+      padding:14px 20px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:.92rem;
+      transition:.35s ease;
+      border:1px solid transparent;
+      cursor:pointer;
+    }
+    .btn-primary{
+      background:linear-gradient(180deg, var(--accent-2), var(--accent));
+      color:#111;
+      box-shadow:0 12px 32px rgba(214,195,161,.18);
+    }
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 40px rgba(214,195,161,.24);
+    }
+    .btn-secondary{
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      backdrop-filter:blur(12px);
+    }
+    .btn-secondary:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.2);
+      background:rgba(255,255,255,.05);
+    }
+    .link-secondary{
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      color:var(--muted);
+      font-weight:600;
+      font-size:.92rem;
+      padding:10px 2px;
+      transition:.25s ease;
+    }
+    .link-secondary:hover{color:var(--white)}
+
+    .site-header{
+      position:fixed;
+      top:0;left:0;right:0;
+      z-index:50;
+      transition:.35s ease;
+      background:transparent;
+    }
+    .site-header.scrolled{
+      background:rgba(14,14,16,.72);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:78px;
+    }
+    .brand{
+      font-size:1.02rem;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .brand span{color:var(--accent)}
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:26px;
+    }
+    .nav-links a{
+      color:var(--muted);
+      font-size:.92rem;
+      transition:.25s ease;
+    }
+    .nav-links a:hover{color:var(--white)}
+    .nav-cta{display:flex;align-items:center;gap:14px}
+    .menu-toggle{
+      display:none;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      width:44px;height:44px;border-radius:50%;
+      font-size:1.05rem;
+    }
+
+    .hero{
+      min-height:84vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      padding-top:94px;
+      isolation:isolate;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        linear-gradient(180deg, rgba(8,8,10,.18) 0%, rgba(8,8,10,.42) 44%, rgba(8,8,10,.84) 100%),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      transform:scale(1.02);
+      z-index:-3;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        radial-gradient(circle at 74% 26%, rgba(214,195,161,.08), transparent 22%),
+        linear-gradient(90deg, rgba(15,15,16,.92) 0%, rgba(15,15,16,.72) 34%, rgba(15,15,16,.62) 100%);
+      z-index:-2;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.12fr .88fr;
+      gap:54px;
+      align-items:center;
+      width:100%;
+      padding:28px 0;
+    }
+    .hero-copy{
+      max-width:640px;
+    }
+    .hero-kicker{
+      display:inline-flex;
+      align-items:center;
+      gap:.65rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-size:.68rem;
+      color:var(--accent);
+      margin-bottom:18px;
+    }
+    .hero-kicker::before{
+      content:"";
+      width:26px;
+      height:1px;
+      background:linear-gradient(90deg,var(--accent),transparent);
+      display:block;
+    }
+    .hero-copy .lead{
+      margin-top:18px;
+      max-width:560px;
+      font-size:.98rem;
+      line-height:1.72;
+      color:#d4cdbf;
+    }
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .hero-panel{
+      justify-self:end;
+      width:min(100%, 380px);
+      background:rgba(14,14,16,.46);
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:28px;
+      padding:18px;
+      backdrop-filter:blur(16px);
+      box-shadow:var(--shadow);
+    }
+    .panel-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:14px;
+    }
+    .dots{display:flex;gap:7px}
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:rgba(255,255,255,.16);
+    }
+    .badge{
+      padding:7px 11px;
+      border-radius:999px;
+      background:rgba(214,195,161,.1);
+      color:var(--accent-2);
+      font-size:.68rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+    .browser{
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:20px;
+      overflow:hidden;
+      background:#121214;
+    }
+    .browser-bar{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:13px 15px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      color:var(--muted-2);
+      font-size:.78rem;
+    }
+    .browser-bar .mini{display:flex;gap:6px}
+    .browser-bar .mini span{
+      width:8px;height:8px;border-radius:50%;
+      background:rgba(255,255,255,.15);
+      display:block;
+    }
+    .browser-view{padding:14px}
+    .browser-hero{
+      min-height:124px;
+      border-radius:16px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)),
+        radial-gradient(circle at 20% 20%, rgba(214,195,161,.18), transparent 40%),
+        linear-gradient(135deg, #292825, #171718);
+      display:flex;
+      align-items:flex-end;
+      padding:18px;
+      color:var(--white);
+      font-family:var(--serif);
+      font-size:1.08rem;
+      line-height:1.12;
+      letter-spacing:-.03em;
+    }
+    .browser-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    .browser-block{
+      background:var(--panel);
+      border-radius:14px;
+      min-height:80px;
+      border:1px solid rgba(255,255,255,.04);
+      padding:12px;
+    }
+    .browser-line{
+      height:9px;
+      border-radius:999px;
+      background:linear-gradient(90deg, rgba(255,255,255,.16), rgba(255,255,255,.05));
+      margin-bottom:9px;
+    }
+    .browser-line.short{width:72%}
+    .metric-note{
+      display:block;
+      margin-top:8px;
+      color:#d5cbb9;
+      font-size:.76rem;
+      line-height:1.45;
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:end;
+      gap:22px;
+      margin-bottom:38px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+    }
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .card{
+      padding:28px;
+      border-radius:26px;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      box-shadow:var(--shadow);
+    }
+    .card-icon{
+      width:42px;height:42px;
+      display:grid;place-items:center;
+      border-radius:50%;
+      background:rgba(214,195,161,.12);
+      border:1px solid rgba(214,195,161,.2);
+      color:var(--accent-2);
+      font-size:.9rem;
+      margin-bottom:16px;
+    }
+    .card p{margin-top:9px;color:var(--muted);font-size:.95rem}
+
+    .split{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:40px;
+      align-items:center;
+    }
+    .list{
+      display:grid;
+      gap:14px;
+      margin-top:24px;
+    }
+    .list-item{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:14px;
+      align-items:start;
+      padding:16px 18px;
+      border-radius:20px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .list-dot{
+      width:28px;height:28px;
+      border-radius:50%;
+      display:grid;place-items:center;
+      background:rgba(214,195,161,.12);
+      color:var(--accent);
+      font-weight:700;
+      font-size:.88rem;
+      margin-top:2px;
+    }
+    .list-item p{color:var(--muted);margin-top:5px;font-size:.94rem}
+
+    .visual-box{
+      min-height:470px;
+      border-radius:30px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(214,195,161,.16), transparent 26%),
+        linear-gradient(135deg, #1b1a18, #111214 65%);
+      box-shadow:var(--shadow);
+      padding:26px;
+      overflow:hidden;
+      position:relative;
+    }
+    .visual-stack{
+      position:relative;
+      width:100%;
+      height:100%;
+      min-height:410px;
+    }
+    .screen{
+      position:absolute;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+      box-shadow:0 24px 55px rgba(0,0,0,.28);
+      backdrop-filter:blur(12px);
+      overflow:hidden;
+    }
+    .screen-large{
+      inset:0 48px 34px 0;
+      padding:22px;
+    }
+    .screen-small{
+      right:0;
+      bottom:0;
+      width:210px;
+      min-height:210px;
+      padding:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+    .metric{
+      padding:13px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      margin-top:12px;
+    }
+    .metric strong{
+      display:block;
+      font-size:1.15rem;
+      font-family:var(--serif);
+      color:var(--accent-2);
+    }
+    .metric span{color:var(--muted);font-size:.86rem}
+
+    .project{
+      min-height:360px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      border-radius:30px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      position:relative;
+      padding:28px;
+      box-shadow:var(--shadow);
+    }
+    .project::before{
+      content:"";
+      position:absolute;inset:0;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.78)),
+        var(--bg-image) center/cover no-repeat;
+      transition:transform .8s ease;
+      z-index:-1;
+    }
+    .project:hover::before{transform:scale(1.05)}
+    .project .tag{
+      display:inline-flex;
+      width:max-content;
+      padding:7px 11px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.1);
+      font-size:.74rem;
+      color:var(--accent-2);
+      margin-bottom:14px;
+    }
+    .project p{margin-top:9px;max-width:520px;color:#ddd4c6;font-size:.94rem}
+
+    .faq{
+      display:grid;
+      gap:14px;
+    }
+    .faq-item{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      overflow:hidden;
+      transition:border-color .3s ease, background .3s ease, transform .3s ease;
+    }
+    .faq-item.open{
+      border-color:rgba(214,195,161,.22);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      transform:translateY(-1px);
+    }
+    .faq-question{
+      width:100%;
+      border:none;
+      background:transparent;
+      color:var(--text);
+      text-align:left;
+      padding:20px 24px;
+      font:inherit;
+      font-weight:600;
+      font-size:.98rem;
+      cursor:pointer;
+      position:relative;
+    }
+    .faq-question::after{
+      content:"+";
+      position:absolute;
+      right:24px;
+      top:50%;
+      transform:translateY(-50%) rotate(0deg);
+      color:var(--accent);
+      font-size:1.25rem;
+      transition:transform .35s ease, opacity .35s ease;
+    }
+    .faq-item.open .faq-question::after{
+      transform:translateY(-50%) rotate(45deg);
+    }
+    .faq-answer{
+      display:grid;
+      grid-template-rows:0fr;
+      transition:grid-template-rows .42s cubic-bezier(.2,.8,.2,1);
+    }
+    .faq-item.open .faq-answer{
+      grid-template-rows:1fr;
+    }
+    .faq-answer-inner{
+      overflow:hidden;
+    }
+    .faq-answer p{
+      padding:0 24px 22px;
+      color:var(--muted);
+      max-width:85ch;
+      opacity:0;
+      transform:translateY(-8px);
+      transition:opacity .32s ease, transform .32s ease;
+      font-size:.94rem;
+    }
+    .faq-item.open .faq-answer p{
+      opacity:1;
+      transform:translateY(0);
+      transition-delay:.08s;
+    }
+
+    .cta-block{
+      padding:40px;
+      border-radius:32px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(214,195,161,.16), transparent 20%),
+        linear-gradient(135deg, #1e1d1b, #121214 65%);
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:28px;
+      align-items:start;
+    }
+    .contact-list{
+      display:grid;
+      gap:14px;
+    }
+    .contact-item{
+      padding:16px 18px;
+      border-radius:20px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .contact-item span{
+      display:block;
+      font-size:.78rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted-2);
+      margin-bottom:6px;
+    }
+
+    .contact-form{
+      display:grid;
+      gap:14px;
+    }
+    .form-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    .field{
+      display:grid;
+      gap:8px;
+    }
+    .field label{
+      font-size:.78rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:var(--muted-2);
+    }
+    .field input,
+    .field textarea,
+    .field select{
+      width:100%;
+      border:none;
+      outline:none;
+      padding:15px 17px;
+      border-radius:16px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:var(--text);
+      font-family:var(--sans);
+      font-size:.94rem;
+      transition:.25s ease;
+      appearance:none;
+    }
+    .field select option{
+      background:#151517;
+      color:var(--text);
+    }
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus{
+      border-color:rgba(214,195,161,.45);
+      box-shadow:0 0 0 4px rgba(214,195,161,.08);
+    }
+    .field textarea{
+      min-height:150px;
+      resize:vertical;
+    }
+    .form-note{
+      color:var(--muted);
+      font-size:.88rem;
+    }
+
+    .footer{
+      padding:28px 0 42px;
+      color:var(--muted-2);
+      border-top:1px solid rgba(255,255,255,.05);
+      font-size:.9rem;
+    }
+    .footer-row{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width: 1100px){
+      .hero-grid,
+      .section-head,
+      .split,
+      .cta-block{
+        grid-template-columns:1fr;
+      }
+      .hero-copy{
+        max-width:100%;
+      }
+      .hero-panel{
+        justify-self:start;
+        width:min(100%, 500px);
+      }
+      .grid-3{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr 1fr}
+      h2{max-width:none}
+    }
+
+    @media (max-width: 780px){
+      .nav-links,
+      .nav-cta .btn{
+        display:none;
+      }
+      .menu-toggle{display:grid;place-items:center}
+      .mobile-menu{
+        position:fixed;
+        top:78px;left:20px;right:20px;
+        background:rgba(18,18,20,.96);
+        border:1px solid rgba(255,255,255,.08);
+        border-radius:22px;
+        padding:16px;
+        box-shadow:var(--shadow);
+        display:none;
+        z-index:60;
+      }
+      .mobile-menu.active{display:grid;gap:8px}
+      .mobile-menu a{
+        padding:13px 12px;
+        color:var(--muted);
+        border-radius:14px;
+      }
+      .mobile-menu a:hover{background:rgba(255,255,255,.04);color:var(--white)}
+      .grid-3,.grid-2,.form-row,.browser-grid{grid-template-columns:1fr}
+      .section{padding:80px 0}
+      .hero{
+        min-height:auto;
+        padding-top:104px;
+        padding-bottom:34px;
+      }
+      .hero-grid{
+        padding:8px 0 20px;
+        gap:28px;
+      }
+      .hero-panel{width:100%}
+      .visual-box{min-height:440px}
+      .cta-block{padding:28px}
+      h1{
+        max-width:none;
+        font-size:clamp(1.9rem, 8vw, 2.8rem);
+        line-height:1.08;
+      }
+      .hero-copy .lead{
+        font-size:.94rem;
+        max-width:none;
+      }
+      .hero-actions{
+        gap:10px 16px;
+      }
+      .screen-large{inset:0 24px 30px 0}
+      .screen-small{
+        width:185px;
+        min-height:190px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav">
+      <a href="#top" class="brand">Re<span>new</span></a>
+
+      <nav class="nav-links" aria-label="Principal">
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="#contacto" class="btn btn-secondary">Contactar</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#servicios">Servicios</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="hero-kicker">Renew Studio</div>
+
+          <h1>Webs premium para marcas que quieren crecer mejor</h1>
+
+          <p class="lead">
+            Webs corporativas, landings, rediseños y tiendas online con diseño cuidado, claridad y foco en conversión.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contacto" class="btn btn-primary">Solicitar propuesta</a>
+            <a href="#proyectos" class="link-secondary">Ver proyectos</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel reveal" aria-hidden="true">
+          <div class="panel-top">
+            <div class="dots">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="badge">Estudio digital</div>
+          </div>
+
+          <div class="browser">
+            <div class="browser-bar">
+              <div class="mini">
+                <span></span><span></span><span></span>
+              </div>
+              renew.agency
+            </div>
+            <div class="browser-view">
+              <div class="browser-hero">Diseño limpio, experiencia fluida y una presencia más sólida</div>
+              <div class="browser-grid">
+                <div class="browser-block">
+                  <div class="browser-line"></div>
+                  <div class="browser-line short"></div>
+                  <span class="metric-note">Web corporativa o landing</span>
+                </div>
+                <div class="browser-block">
+                  <div class="browser-line"></div>
+                  <div class="browser-line short"></div>
+                  <span class="metric-note">Tienda online orientada a venta</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Propuesta de valor</div>
+            <h2>Diseño web para transmitir mejor tu marca y convertir con más claridad</h2>
+          </div>
+          <p class="lead">
+            Una presencia digital más cuidada, más entendible y mejor enfocada a captar clientes o vender.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <div class="card-icon">01</div>
+            <h3>Imagen más cuidada</h3>
+            <p>Diseño sobrio y una ejecución que eleva la percepción de tu marca.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">02</div>
+            <h3>Mensaje más claro</h3>
+            <p>Estructura y copy para presentar mejor lo que haces y reducir fricción.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">03</div>
+            <h3>Enfoque comercial</h3>
+            <p>Webs y tiendas online pensadas para generar confianza y facilitar la venta.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicios">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Servicios</div>
+            <h2>Diseño y desarrollo web con criterio visual y foco en resultado</h2>
+          </div>
+          <p class="lead">
+            Proyectos digitales cuidados para marcas que necesitan una presencia más sólida y más clara.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card reveal">
+            <div class="card-icon">✦</div>
+            <h3>Web corporativa</h3>
+            <p>Para empresas que necesitan una presencia profesional, coherente con su marca y bien estructurada.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">✦</div>
+            <h3>Landing de captación</h3>
+            <p>Páginas enfocadas en presentar una oferta con claridad y facilitar el siguiente paso.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">✦</div>
+            <h3>Rediseño web premium</h3>
+            <p>Actualización de webs desfasadas para darles una imagen más cuidada y una mejor lectura comercial.</p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-icon">✦</div>
+            <h3>Tienda online</h3>
+            <p>Ecommerce elegante y funcional, pensado para vender mejor sin perder claridad.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proceso">
+      <div class="container split">
+        <div class="reveal">
+          <div class="eyebrow">Proceso</div>
+          <h2>Un proceso claro, ágil y bien dirigido</h2>
+          <p class="lead" style="margin-top:18px;">
+            Cada proyecto se trabaja con orden, criterio visual y foco en negocio.
+          </p>
+
+          <div class="list">
+            <div class="list-item">
+              <div class="list-dot">1</div>
+              <div>
+                <h3>Estrategia y estructura</h3>
+                <p>Definimos objetivos, oferta y recorrido del usuario para construir una base clara.</p>
+              </div>
+            </div>
+
+            <div class="list-item">
+              <div class="list-dot">2</div>
+              <div>
+                <h3>Diseño y copy</h3>
+                <p>Trabajamos una propuesta visual cuidada y un mensaje más preciso.</p>
+              </div>
+            </div>
+
+            <div class="list-item">
+              <div class="list-dot">3</div>
+              <div>
+                <h3>Desarrollo y lanzamiento</h3>
+                <p>Una experiencia responsive, fluida y lista para captar clientes o vender.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-box reveal" aria-hidden="true">
+          <div class="visual-stack">
+            <div class="screen screen-large">
+              <div class="browser-bar" style="padding:0 0 14px 0;border-bottom:none;">
+                <div class="mini"><span></span><span></span><span></span></div>
+                vista de proyecto
+              </div>
+              <div class="browser-hero" style="min-height:140px;">Una presencia digital más clara, elegante y preparada para convertir</div>
+            </div>
+
+            <div class="screen screen-small">
+              <div class="badge" style="width:max-content;margin-bottom:14px;">Resultado</div>
+              <div class="metric">
+                <strong>Más nivel</strong>
+                <span>Una marca mejor presentada</span>
+              </div>
+              <div class="metric">
+                <strong>Más intención</strong>
+                <span>Una experiencia orientada a captar o vender</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proyectos">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Proyectos</div>
+            <h2>Tipos de proyecto pensados para negocio real</h2>
+          </div>
+          <p class="lead">
+            Ejemplos de webs y tiendas online concebidas para elevar la imagen de marca y mejorar la conversión.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="project reveal" style="--bg-image:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80');">
+            <span class="tag">Web corporativa</span>
+            <h3 style="font-size:1.42rem;">Web para empresa de servicios</h3>
+            <p>Una página corporativa diseñada para presentar servicios con más orden y reforzar la confianza.</p>
+          </article>
+
+          <article class="project reveal" style="--bg-image:url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1600&q=80');">
+            <span class="tag">Landing de captación</span>
+            <h3 style="font-size:1.42rem;">Landing para una oferta principal</h3>
+            <p>Una estructura enfocada en explicar la propuesta con claridad y facilitar el contacto.</p>
+          </article>
+
+          <article class="project reveal" style="--bg-image:url('https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1600&q=80');">
+            <span class="tag">Tienda online</span>
+            <h3 style="font-size:1.42rem;">Ecommerce para marca de producto</h3>
+            <p>Una tienda online cuidada, con una experiencia clara y un recorrido de compra fluido.</p>
+          </article>
+
+          <article class="project reveal" style="--bg-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80');">
+            <span class="tag">Rediseño web premium</span>
+            <h3 style="font-size:1.42rem;">Rediseño para una marca consolidada</h3>
+            <p>Actualización de diseño y copy para lograr una presencia más sobria y convincente.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">FAQ</div>
+            <h2>Preguntas frecuentes</h2>
+          </div>
+          <p class="lead">
+            Lo esencial antes de empezar.
+          </p>
+        </div>
+
+        <div class="faq">
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">¿Qué tipo de proyectos desarrollas?</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Trabajo webs corporativas, landings, rediseños y tiendas online con un enfoque visual cuidado, una estructura clara y orientación comercial.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">¿También desarrollas tiendas online?</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Sí. Desarrollo ecommerce cuidados, funcionales y alineados con la marca, pensados para vender mejor sin perder claridad ni sofisticación.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">¿Puedes rediseñar una web existente?</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Sí. Podemos partir de tu web actual y convertirla en una versión más clara, más elegante y mejor enfocada a captar clientes o impulsar ventas.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">¿La web estará adaptada a móvil?</button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>Sí. Todos los proyectos se desarrollan para ofrecer una experiencia sólida en móvil, tablet y escritorio.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacto">
+      <div class="container">
+        <div class="cta-block reveal">
+          <div>
+            <div class="eyebrow">Contacto</div>
+            <h2>Cuéntame tu proyecto</h2>
+            <p class="lead" style="margin-top:18px;">
+              Comparte qué necesitas y te responderé con una propuesta alineada con tu marca y tus objetivos.
+            </p>
+
+            <div class="contact-list" style="margin-top:24px;">
+              <div class="contact-item">
+                <span>Email</span>
+                <strong>renew.agencyy@gmail.com</strong>
+              </div>
+              <div class="contact-item">
+                <span>Teléfono</span>
+                <strong>621 283 706</strong>
+              </div>
+              <div class="contact-item">
+                <span>Servicios</span>
+                <strong>Web corporativa · Landing · Rediseño · Tienda online</strong>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="2a40288d-63cc-4144-b43c-445c1f406ff6">
+            <input type="hidden" name="subject" value="Nuevo contacto desde Renew">
+            <input type="hidden" name="from_name" value="Renew Web">
+            <input type="checkbox" name="botcheck" style="display:none;">
+
+            <div class="form-row">
+              <div class="field">
+                <label for="nombre">Nombre</label>
+                <input id="nombre" name="name" type="text" required placeholder="Tu nombre" />
+              </div>
+              <div class="field">
+                <label for="empresa">Empresa</label>
+                <input id="empresa" name="empresa" type="text" placeholder="Nombre de tu empresa" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required placeholder="tu@email.com" />
+              </div>
+              <div class="field">
+                <label for="telefono">Teléfono</label>
+                <input id="telefono" name="telefono" type="tel" placeholder="Tu teléfono" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="servicio">Tipo de proyecto</label>
+              <select id="servicio" name="servicio">
+                <option value="">Selecciona una opción</option>
+                <option>Web corporativa</option>
+                <option>Landing</option>
+                <option>Rediseño web</option>
+                <option>Tienda online</option>
+                <option>No lo tengo claro aún</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="mensaje">Cuéntame qué necesitas</label>
+              <textarea id="mensaje" name="message" required placeholder="Describe brevemente tu proyecto"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:max-content;">Enviar solicitud</button>
+
+            <p class="form-note">
+              Te responderemos con los siguientes pasos y una orientación inicial.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>© 2026 Renew. Diseño web premium para negocios.</div>
+      <div>Web corporativa · Landing · Rediseño · Ecommerce</div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('siteHeader');
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 18) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+      });
+    }
+
+    document.querySelectorAll('.mobile-menu a, .nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+      const button = item.querySelector('.faq-question');
+
+      button.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        faqItems.forEach(faq => faq.classList.remove('open'));
+
+        if (!isOpen) {
+          item.classList.add('open');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
